@@ -65,16 +65,19 @@ public class OctaneWorldsAPI {
         Util.log("&aUnloaded world '"+world.getName()+"' in "+(System.currentTimeMillis() - start) + "ms (Synchronously)");
     }
 
-    public static TaskStatus deleteWorld(@NonNull File worldFolder) throws InvalidWorldFolderException {
+    public static TaskStatus deleteWorld(@NonNull File worldFolder, @Nullable Location fallBackLocation) throws InvalidWorldFolderException {
         if (!worldFolder.isDirectory())
             throw new InvalidWorldFolderException(worldFolder.getPath());
+        if (fallBackLocation == null){
+            fallBackLocation = Bukkit.getWorlds().get(0).getSpawnLocation();
+        }
         TaskStatus taskStatus = new TaskStatus();
-        WorldTask worldTask = new DeleteWorldTask(taskStatus, worldFolder);
+        WorldTask worldTask = new DeleteWorldTask(taskStatus, worldFolder, fallBackLocation);
         worldTask.start();
         return taskStatus;
     }
 
-    public static TaskStatus deleteWorld(@NonNull World world) throws InvalidWorldFolderException {
-        return deleteWorld(world.getWorldFolder());
+    public static TaskStatus deleteWorld(@NonNull World world, @Nullable Location fallBackLocation) throws InvalidWorldFolderException {
+        return deleteWorld(world.getWorldFolder(), fallBackLocation);
     }
 }

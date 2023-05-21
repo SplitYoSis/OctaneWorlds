@@ -121,7 +121,7 @@ public class OctaneWorldsBranch extends SYSCommandBranch {
                     World world = Bukkit.getWorld(args[0]);
                     Util.sendMessage(sender, "&7Deleting world '"+world.getName()+"'...");
                     try {
-                        TaskStatus taskStatus = OctaneWorldsAPI.deleteWorld(world);
+                        TaskStatus taskStatus = OctaneWorldsAPI.deleteWorld(world, null);
                         new BukkitRunnable(){
                             @Override
                             public void run() {
