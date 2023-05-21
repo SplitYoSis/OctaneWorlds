@@ -42,6 +42,13 @@ public class LoadWorldTask extends WorldTask{
                 Util.log("&aSuccessfully loaded world '" + worldName + "' in " + (current - start) + " ms.");
                 taskStatus.isComplete = true;
                 worldsBeingTasked.remove(worldName.toLowerCase());
+                Bukkit.getScheduler().runTaskAsynchronously(OctaneWorlds.plugin, () -> {
+                    String path = toLoad.getAbsolutePath();
+                    if (!OctaneWorlds.plugin.getWorldsConfig().pathList.contains(path)) {
+                        OctaneWorlds.plugin.getWorldsConfig().pathList.add(path);
+                        OctaneWorlds.plugin.getWorldsConfig().saveToFile();
+                    }
+                });
             });
         });
     }
