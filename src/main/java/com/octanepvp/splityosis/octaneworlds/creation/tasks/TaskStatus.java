@@ -1,4 +1,4 @@
-package com.octanepvp.splityosis.octaneworlds.creation;
+package com.octanepvp.splityosis.octaneworlds.creation.tasks;
 
 public class TaskStatus {
 

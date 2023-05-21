@@ -1,6 +1,5 @@
-package com.octanepvp.splityosis.octaneworlds.worldgeneration;
+package com.octanepvp.splityosis.octaneworlds.creation;
 
-import com.octanepvp.splityosis.octaneworlds.utils.Util;
 import org.bukkit.HeightMap;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -18,7 +17,7 @@ public class EmptyWorldGenerator extends ChunkGenerator {
 
     @Override
     public Location getFixedSpawnLocation(World world, Random random) {
-        return new Location(world, 0, 101, 0);
+        return new Location(world, 0.5, 100, 0.5);
     }
 
 
@@ -139,7 +138,6 @@ public class EmptyWorldGenerator extends ChunkGenerator {
 
     @Override
     public ChunkData generateChunkData(World world, Random random, int x, int z, BiomeGrid biome) {
-        Util.log("&cUnused Method");
         return createChunkData(world);
     }
 }

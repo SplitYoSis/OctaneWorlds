@@ -1,4 +1,4 @@
-package com.octanepvp.splityosis.octaneworlds.commands;
+package com.octanepvp.splityosis.octaneworlds.commands.arguments;
 
 import com.octanepvp.splityosis.octaneworlds.creation.tasks.WorldTask;
 import dev.splityosis.commandsystem.SYSArgument;

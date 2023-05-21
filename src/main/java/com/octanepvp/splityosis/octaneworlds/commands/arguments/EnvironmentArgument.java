@@ -1,4 +1,4 @@
-package com.octanepvp.splityosis.octaneworlds.commands;
+package com.octanepvp.splityosis.octaneworlds.commands.arguments;
 
 import dev.splityosis.commandsystem.SYSArgument;
 import dev.splityosis.commandsystem.SYSCommand;

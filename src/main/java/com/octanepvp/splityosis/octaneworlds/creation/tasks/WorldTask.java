@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class WorldTask {
-    public static List<String> worldsCreated = new ArrayList<>();
     public static List<String> worldsBeingTasked = new ArrayList<>();
 
     public abstract void start();
