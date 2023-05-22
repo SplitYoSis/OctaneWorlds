@@ -1,4 +1,4 @@
-package com.octanepvp.splityosis.octaneworlds.exceptions;
+package com.octanepvp.splityosis.octaneworldsapi.exceptions;
 
 public class InvalidWorldName extends Exception{
 

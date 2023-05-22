@@ -1,9 +1,9 @@
-package com.octanepvp.splityosis.octaneworlds.creation.tasks;
+package com.octanepvp.splityosis.octaneworldsapi;
 
 public class TaskStatus {
 
-    protected boolean isComplete = false;
-    protected boolean hasStarted = false;
+    public boolean isComplete = false;
+    public boolean hasStarted = false;
 
     public boolean isComplete() {
         return isComplete;

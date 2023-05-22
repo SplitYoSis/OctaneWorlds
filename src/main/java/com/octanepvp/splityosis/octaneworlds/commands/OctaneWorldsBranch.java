@@ -1,14 +1,14 @@
 package com.octanepvp.splityosis.octaneworlds.commands;
 
 import com.octanepvp.splityosis.octaneworlds.OctaneWorlds;
-import com.octanepvp.splityosis.octaneworlds.api.OctaneWorldsAPI;
+import com.octanepvp.splityosis.octaneworlds.OctaneWorldsPanel;
 import com.octanepvp.splityosis.octaneworlds.commands.arguments.EnvironmentArgument;
 import com.octanepvp.splityosis.octaneworlds.commands.arguments.NewWorldNameArgument;
 import com.octanepvp.splityosis.octaneworlds.commands.arguments.UnloadedWorldFileArgument;
 import com.octanepvp.splityosis.octaneworlds.commands.arguments.WorldArgument;
-import com.octanepvp.splityosis.octaneworlds.creation.tasks.TaskStatus;
-import com.octanepvp.splityosis.octaneworlds.exceptions.InvalidWorldFolderException;
-import com.octanepvp.splityosis.octaneworlds.exceptions.InvalidWorldName;
+import com.octanepvp.splityosis.octaneworldsapi.TaskStatus;
+import com.octanepvp.splityosis.octaneworldsapi.exceptions.InvalidWorldFolderException;
+import com.octanepvp.splityosis.octaneworldsapi.exceptions.InvalidWorldName;
 import com.octanepvp.splityosis.octaneworlds.utils.Util;
 import dev.splityosis.commandsystem.SYSCommand;
 import dev.splityosis.commandsystem.SYSCommandBranch;
@@ -36,7 +36,7 @@ public class OctaneWorldsBranch extends SYSCommandBranch {
                 .executes((sender, args) -> {
                     try {
                         Util.sendMessage(sender, "&7Creating world '"+args[0]+"'...");
-                        TaskStatus taskStatus = OctaneWorldsAPI.createWorld(args[0], World.Environment.valueOf(args[1]));
+                        TaskStatus taskStatus = OctaneWorldsPanel.createWorld(args[0], World.Environment.valueOf(args[1]));
                         new BukkitRunnable(){
                             @Override
                             public void run() {
@@ -58,7 +58,7 @@ public class OctaneWorldsBranch extends SYSCommandBranch {
                 .executes((sender, args) -> {
                     try {
                         Util.sendMessage(sender, "&7Cloning world '"+args[0]+"'...");
-                        TaskStatus taskStatus = OctaneWorldsAPI.cloneWorld(Objects.requireNonNull(Bukkit.getWorld(args[0])), args[1]);
+                        TaskStatus taskStatus = OctaneWorldsPanel.cloneWorld(Objects.requireNonNull(Bukkit.getWorld(args[0])), args[1]);
                         new BukkitRunnable(){
                             @Override
                             public void run() {
@@ -79,7 +79,7 @@ public class OctaneWorldsBranch extends SYSCommandBranch {
                 .executes((sender, args) -> {
                     World world = Objects.requireNonNull(Bukkit.getWorld(args[0]));
                     Util.sendMessage(sender, "&7Unloading world '"+world.getName()+"'...");
-                    OctaneWorldsAPI.unloadWorld(world, true, null);
+                    OctaneWorldsPanel.unloadWorld(world, true, null);
                     Util.sendMessage(sender, "&aSuccessfully unloaded world '"+world.getName()+"'!");
                 }));
 
@@ -99,7 +99,7 @@ public class OctaneWorldsBranch extends SYSCommandBranch {
                     File file = new File(Bukkit.getWorldContainer(), args[0]);
                     Util.sendMessage(sender, "&7Loading world '"+file.getName()+"'...");
                     try {
-                        TaskStatus taskStatus = OctaneWorldsAPI.loadWorld(file);
+                        TaskStatus taskStatus = OctaneWorldsPanel.loadWorld(file);
                         new BukkitRunnable(){
                             @Override
                             public void run() {
@@ -121,7 +121,7 @@ public class OctaneWorldsBranch extends SYSCommandBranch {
                     World world = Bukkit.getWorld(args[0]);
                     Util.sendMessage(sender, "&7Deleting world '"+world.getName()+"'...");
                     try {
-                        TaskStatus taskStatus = OctaneWorldsAPI.deleteWorld(world, null);
+                        TaskStatus taskStatus = OctaneWorldsPanel.deleteWorld(world, null);
                         new BukkitRunnable(){
                             @Override
                             public void run() {

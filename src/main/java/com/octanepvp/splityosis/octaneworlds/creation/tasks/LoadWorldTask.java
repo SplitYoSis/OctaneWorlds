@@ -3,8 +3,8 @@ package com.octanepvp.splityosis.octaneworlds.creation.tasks;
 import com.octanepvp.splityosis.octaneworlds.OctaneWorlds;
 import com.octanepvp.splityosis.octaneworlds.creation.EmptyWorldGenerator;
 import com.octanepvp.splityosis.octaneworlds.utils.Util;
+import com.octanepvp.splityosis.octaneworldsapi.TaskStatus;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 
 import java.io.File;
 

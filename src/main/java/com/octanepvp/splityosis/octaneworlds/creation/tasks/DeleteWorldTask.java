@@ -2,11 +2,10 @@ package com.octanepvp.splityosis.octaneworlds.creation.tasks;
 
 import com.octanepvp.splityosis.octaneworlds.OctaneWorlds;
 import com.octanepvp.splityosis.octaneworlds.utils.Util;
+import com.octanepvp.splityosis.octaneworldsapi.TaskStatus;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.io.File;

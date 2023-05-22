@@ -1,9 +1,10 @@
-package com.octanepvp.splityosis.octaneworlds.api;
+package com.octanepvp.splityosis.octaneworlds;
 
 import com.octanepvp.splityosis.octaneworlds.creation.tasks.*;
-import com.octanepvp.splityosis.octaneworlds.exceptions.InvalidWorldFolderException;
-import com.octanepvp.splityosis.octaneworlds.exceptions.InvalidWorldName;
+import com.octanepvp.splityosis.octaneworldsapi.exceptions.InvalidWorldFolderException;
+import com.octanepvp.splityosis.octaneworldsapi.exceptions.InvalidWorldName;
 import com.octanepvp.splityosis.octaneworlds.utils.Util;
+import com.octanepvp.splityosis.octaneworldsapi.TaskStatus;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,7 +14,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.io.*;
 
-public class OctaneWorldsAPI {
+public class OctaneWorldsPanel {
 
     public static TaskStatus createWorld(@NonNull String worldName, World.@NonNull Environment environment) throws InvalidWorldName{
         return createWorld(new File(Bukkit.getWorldContainer(), worldName), worldName, environment);
