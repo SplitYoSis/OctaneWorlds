@@ -2,4 +2,4 @@ name: OctaneWorlds
 version: '${project.version}'
 main: com.octanepvp.splityosis.octaneworlds.OctaneWorlds
 api-version: 1.19
-load: STARTUP
+load: POSTWORLD

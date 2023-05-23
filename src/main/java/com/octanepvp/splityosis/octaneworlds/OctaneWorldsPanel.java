@@ -54,6 +54,17 @@ public class OctaneWorldsPanel {
         return taskStatus;
     }
 
+    public static TaskStatus loadWorldSynced(@NonNull File worldFile) throws InvalidWorldName {
+        String newWorldName = worldFile.getName();
+        if (Bukkit.getWorld(newWorldName) != null || WorldTask.worldsBeingTasked.contains(newWorldName.toLowerCase()))
+            throw new InvalidWorldName(newWorldName);
+
+        TaskStatus taskStatus = new TaskStatus();
+        LoadWorldTask worldTask = new LoadWorldTask(taskStatus, worldFile);
+        worldTask.startSynced();
+        return taskStatus;
+    }
+
     public static void unloadWorld(@NonNull World world, boolean save, @Nullable Location fallBackLocation){
         long start = System.currentTimeMillis();
         if (fallBackLocation == null){

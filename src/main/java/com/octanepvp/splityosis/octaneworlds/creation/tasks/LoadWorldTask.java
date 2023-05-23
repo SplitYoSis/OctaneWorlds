@@ -52,4 +52,32 @@ public class LoadWorldTask extends WorldTask{
             });
         });
     }
+
+    public void startSynced(){
+        Util.log("&7Loading world '" + worldName + "'...");
+        worldsBeingTasked.add(worldName.toLowerCase());
+        taskStatus.hasStarted = true;
+        long start = System.currentTimeMillis();
+
+        WorldCreator worldCreator = new WorldCreator(toLoad.getName());
+        worldCreator.generator(new EmptyWorldGenerator());
+        worldCreator.generateStructures(false);
+        worldCreator.type(WorldType.FLAT);
+        Util.log("&bPhase 1 successfully finished in " + (System.currentTimeMillis() - start) + " ms (Synchronously)");
+        //Phase 2 - Load world from file
+        long start2 = System.currentTimeMillis();
+        worldCreator.createWorld();
+        long current = System.currentTimeMillis();
+        Util.log("&bPhase 2 successfully finished in " + (current - start2) + " ms (Synchronously)");
+        Util.log("&aSuccessfully loaded world '" + worldName + "' in " + (current - start) + " ms.");
+        taskStatus.isComplete = true;
+        worldsBeingTasked.remove(worldName.toLowerCase());
+        Bukkit.getScheduler().runTaskAsynchronously(OctaneWorlds.plugin, () -> {
+            String path = toLoad.getAbsolutePath();
+            if (!OctaneWorlds.plugin.getWorldsConfig().pathList.contains(path)) {
+                OctaneWorlds.plugin.getWorldsConfig().pathList.add(path);
+                OctaneWorlds.plugin.getWorldsConfig().saveToFile();
+            }
+        });
+    }
 }

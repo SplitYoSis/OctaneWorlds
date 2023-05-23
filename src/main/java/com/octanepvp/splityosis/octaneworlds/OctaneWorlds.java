@@ -2,6 +2,7 @@ package com.octanepvp.splityosis.octaneworlds;
 
 import com.octanepvp.splityosis.octaneworlds.commands.OctaneWorldsBranch;
 import com.octanepvp.splityosis.octaneworlds.creation.CreationListeners;
+import com.octanepvp.splityosis.octaneworlds.creation.tasks.LoadWorldTask;
 import com.octanepvp.splityosis.octaneworlds.data.WorldsConfig;
 import com.octanepvp.splityosis.octaneworldsapi.TaskStatus;
 import com.octanepvp.splityosis.octaneworldsapi.exceptions.InvalidWorldFolderException;
@@ -56,7 +57,7 @@ public final class OctaneWorlds extends JavaPlugin implements OctaneWorldsAPI {
             File file = new File(s);
             if (!file.isDirectory()) continue;
             try {
-                OctaneWorldsPanel.loadWorld(file);
+                OctaneWorldsPanel.loadWorldSynced(file);
             } catch (InvalidWorldName e) {
                 e.printStackTrace();
             }
