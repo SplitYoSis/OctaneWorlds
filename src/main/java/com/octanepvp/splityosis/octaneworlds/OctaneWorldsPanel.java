@@ -17,7 +17,7 @@ import java.io.*;
 public class OctaneWorldsPanel {
 
     public static TaskStatus createWorld(@NonNull String worldName, World.@NonNull Environment environment) throws InvalidWorldName{
-        return createWorld(new File(Bukkit.getWorldContainer(), worldName), worldName, environment);
+        return createWorld(Bukkit.getWorldContainer(), worldName, environment);
     }
 
     private static TaskStatus createWorld(@NonNull File parentDirectory, @NonNull String worldName, World.@NonNull Environment environment) throws InvalidWorldName {

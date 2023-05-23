@@ -2,7 +2,6 @@ package com.octanepvp.splityosis.octaneworlds;
 
 import com.octanepvp.splityosis.octaneworlds.commands.OctaneWorldsBranch;
 import com.octanepvp.splityosis.octaneworlds.creation.CreationListeners;
-import com.octanepvp.splityosis.octaneworlds.creation.tasks.LoadWorldTask;
 import com.octanepvp.splityosis.octaneworlds.data.WorldsConfig;
 import com.octanepvp.splityosis.octaneworldsapi.TaskStatus;
 import com.octanepvp.splityosis.octaneworldsapi.exceptions.InvalidWorldFolderException;
@@ -15,6 +14,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public final class OctaneWorlds extends JavaPlugin implements OctaneWorldsAPI {
 
@@ -28,9 +28,6 @@ public final class OctaneWorlds extends JavaPlugin implements OctaneWorldsAPI {
         getServer().getPluginManager().registerEvents(new CreationListeners(), this);
         if (!getDataFolder().exists())
             getDataFolder().mkdirs();
-//        worldContainer = new File(getDataFolder(), "worlds");
-//        if (!worldContainer.exists())
-//            worldContainer.mkdirs();
 
         worldsConfig = new WorldsConfig(getDataFolder(), "worlds-config");
         worldsConfig.initialize();
@@ -53,9 +50,12 @@ public final class OctaneWorlds extends JavaPlugin implements OctaneWorldsAPI {
     }
 
     private void loadWorlds(){
-        for (String s : worldsConfig.pathList) {
+        for (String s : new ArrayList<>(worldsConfig.pathList)) {
             File file = new File(s);
-            if (!file.isDirectory()) continue;
+            if (!file.exists() || !file.isDirectory()) {
+                worldsConfig.pathList.remove(s);
+                continue;
+            }
             try {
                 OctaneWorldsPanel.loadWorldSynced(file);
             } catch (InvalidWorldName e) {
